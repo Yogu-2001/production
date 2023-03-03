@@ -18,11 +18,13 @@ dotenv.config();
 const app = express();
 
 //middelwares
+const dirname = path.dirname(new URL(import.meta.url).pathname);
 
-app.use(express.static(path.join(__dirname, "./client/build")));
+app.use(express.static(path.join(dirname, "./client/build")));
+
 
 app.use("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(dirname, "./client/build/index.html"));
 });
 
 app.use(cors());
